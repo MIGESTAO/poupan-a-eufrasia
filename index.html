@@ -3,632 +3,351 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gestão Financeira de Poupança</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <title>Gestão Financeira Pessoal</title>
     <style>
-       body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    color: #333;
-    margin: 0;
-    padding: 0;
-}
-
-.container {
-    width: 80%;
-    max-width: 1200px;
-    margin: 20px auto;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-h1, h2 {
-    text-align: center;
-    color: #444;
-}
-
-input[type="text"],
-input[type="number"],
-select {
-    width: calc(100% - 22px);
-    padding: 10px;
-    margin: 10px 0;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-}
-
-button {
-    padding: 10px 20px;
-    margin: 10px 0;
-    border: none;
-    border-radius: 4px;
-    background-color: #007bff;
-    color: white;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-}
-
-button i {
-    margin-right: 5px;
-}
-
-button:hover {
-    background-color: #0056b3;
-}
-
-.summary-card {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px;
-    margin: 10px 0;
-    background-color: #f8f9fa;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-}
-
-.card {
-    background-color: #f8f9fa;
-    padding: 15px;
-    margin: 10px 0;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-}
-
-.card strong {
-    font-size: 1.2em;
-    display: block;
-    margin-bottom: 10px;
-}
-
-.delete-btn {
-    background-color: #d33;
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    border-radius: 4px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-}
-
-.delete-btn i {
-    margin-right: 5px;
-}
-
-.delete-btn:hover {
-    background-color: #a00;
-}
-
-.limpar-tudo {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 10px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    margin-top: 20px;
-}
-
-.limpar-tudo i {
-    margin-right: 5px;
-}
-
-.limpar-tudo:hover {
-    background-color: #0056b3;
-}
-
-@media (max-width: 768px) {
-    .container {
-        width: 95%;
-        padding: 15px;
-    }
-
-    input[type="text"],
-    input[type="number"],
-    select {
-        width: calc(100% - 20px);
-    }
-
-    button,
-    .limpar-tudo {
-        width: 100%;
-        justify-content: center;
-    }
-
-    .summary-card {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .delete-btn {
-        width: 100%;
-        justify-content: center;
-    }
-}
-
-@media (max-width: 480px) {
-    .container {
-        width: 100%;
-        padding: 10px;
-    }
-
-    input[type="text"],
-    input[type="number"],
-    select {
-        width: calc(100% - 18px);
-    }
-
-    button,
-    .limpar-tudo {
-        width: 100%;
-        justify-content: center;
-        padding: 12px;
-        font-size: 1em;
-    }
-
-    .summary-card {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .delete-btn {
-        width: 100%;
-        justify-content: center;
-    }
-}
-
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 20px auto;
+        }
+        .card {
+            background-color: #fff;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border-radius: 10px;
+        }
+        .card h2 {
+            margin-top: 0;
+            color: #007bff;
+        }
+        .card input, .card textarea, .card button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .card button {
+            background-color: #007bff;
+            color: #fff;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .card button:hover {
+            background-color: #0056b3;
+        }
+        .card .delete-btn {
+            display: none;
+            background-color: red;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 5px 10px;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+        .card .delete-btn:hover {
+            background-color: darkred;
+        }
+        .summary {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        .summary div {
+            margin-bottom: 10px;
+        }
+        .floating-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(0,0,0,0.3);
+        }
+        .calculator {
+            display: none;
+            position: fixed;
+            bottom: 90px;
+            right: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0,0,0,0.3);
+            padding: 20px;
+            border-radius: 10px;
+            width: 300px;
+        }
+        .calculator input {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin: 10px 10px 20px 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 18px;
+            text-align: right;
+        }
+        .calculator button {
+            width: 60px;
+            height: 60px;
+            margin: 5px;
+            font-size: 24px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #007bff;
+            color: #fff;
+        }
+        .calculator button:hover {
+            background-color: #0056b3;
+        }
     </style>
 </head>
 <body>
-
-    <h1>Gestão Financeira de Poupança</h1>
-
     <div class="container">
-        <h2>Criação de Conta</h2>
-        <input type="text" id="nome" placeholder="Nome do Membro">
-        <button onclick="criarConta()"><i class="fas fa-user-plus"></i>Criar Conta</button>
-    </div>
+        <div class="card" id="receitas">
+            <h2>Adicionar Receita</h2>
+            <input type="text" id="descricaoReceita" placeholder="Descrição">
+            <input type="number" id="valorReceita" placeholder="Valor (Meticais)">
+            <button onclick="adicionarReceita()">Adicionar Receita</button>
+            <div id="listaReceitas"></div>
+        </div>
 
-    <div class="container">
-        <h2>Registro de Poupança</h2>
-        <select id="nomePoupanca"></select>
-        <input type="number" id="valorPoupado" placeholder="Valor Poupado">
-        <button onclick="registrarPoupanca()"><i class="fas fa-save"></i>Registrar Poupança</button>
-    </div>
+        <div class="card" id="despesas">
+            <h2>Adicionar Despesa</h2>
+            <input type="text" id="descricaoDespesa" placeholder="Descrição">
+            <input type="number" id="valorDespesa" placeholder="Valor (Meticais)">
+            <button onclick="adicionarDespesa()">Adicionar Despesa</button>
+            <div id="listaDespesas"></div>
+        </div>
 
-    <div class="container">
-        <h2>Registro de Dívidas</h2>
-        <input type="text" id="nomeDivida" placeholder="Nome do Cliente">
-        <input type="number" id="valorDivida" placeholder="Valor da Dívida">
-        <input type="number" id="valorJuros" placeholder="Juros (%)">
-        <button onclick="registrarDivida()"><i class="fas fa-file-invoice-dollar"></i>Registrar Dívida</button>
-    </div>
+        <div class="card" id="resumo">
+            <h2>Resumo</h2>
+            <div class="summary">
+                <div>Receitas: <span id="totalReceitas">0</span> MZN</div>
+                <div>Despesas: <span id="totalDespesas">0</span> MZN</div>
+                <div>Saldo Disponível: <span id="saldoDisponivel">0</span> MZN</div>
+            </div>
+        </div>
 
-    <div class="container">
-        <h2>Registro de Reembolso</h2>
-        <select id="nomeReembolso"></select>
-        <input type="number" id="valorReembolso" placeholder="Valor Reembolsado">
-        <button onclick="registrarReembolso()"><i class="fas fa-money-check-alt"></i>Registrar Reembolso</button>
-    </div>
-
-    <div class="container">
-        <h2>Resumo Financeiro</h2>
-        <div class="summary-card">
-            <span>Total de Juros</span>
-            <span id="totalJuros">0</span>
-        </div>
-        <div class="summary-card">
-            <span>Total de Dívidas</span>
-            <span id="totalDividas">0</span>
-        </div>
-        <div class="summary-card">
-            <span>Total de Membros</span>
-            <span id="totalMembros">0</span>
-        </div>
-        <div class="summary-card">
-            <span>Total de Clientes</span>
-            <span id="totalClientes">0</span>
-        </div>
-        <div class="summary-card">
-            <span>Total Poupado</span>
-            <span id="totalPoupado">0</span>
-        </div>
-        <div class="summary-card">
-            <span>Total Reembolsado</span>
-            <span id="totalReembolsado">0</span>
+        <div class="card" id="chat">
+            <h2>Chat de Anotação</h2>
+            <textarea id="chatTexto" placeholder="Escreva suas anotações aqui..."></textarea>
+            <button onclick="salvarAnotacao()">Salvar Anotação</button>
+            <div id="anotacoes"></div>
         </div>
     </div>
 
-    <div class="container">
-        <h2>Poupanças Registradas</h2>
-        <div id="poupancasList"></div>
-        <button class="limpar-tudo" onclick="confirmarLimparTudo('poupancas')"><i class="fas fa-trash-alt"></i>Limpar Tudo</button>
+    <button class="floating-btn" onclick="toggleCalculadora()">+</button>
+
+    <div class="calculator" id="calculadora">
+        <input type="text" id="calcDisplay" readonly>
+        <div>
+            <button onclick="calcInput('1')">1</button>
+            <button onclick="calcInput('2')">2</button>
+            <button onclick="calcInput('3')">3</button>
+            <button onclick="calcInput('+')">+</button>
+        </div>
+        <div>
+            <button onclick="calcInput('4')">4</button>
+            <button onclick="calcInput('5')">5</button>
+            <button onclick="calcInput('6')">6</button>
+            <button onclick="calcInput('-')">-</button>
+        </div>
+        <div>
+            <button onclick="calcInput('7')">7</button>
+            <button onclick="calcInput('8')">8</button>
+            <button onclick="calcInput('9')">9</button>
+            <button onclick="calcInput('*')">*</button>
+        </div>
+        <div>
+            <button onclick="calcInput('0')">0</button>
+            <button onclick="calcInput('.')">.</button>
+            <button onclick="calcInput('%')">%</button>
+            <button onclick="calcInput('/')">/</button>
+        </div>
+        <div>
+            <button onclick="calcClear()">C</button>
+            <button onclick="calcEquals()">=</button>
+        </div>
     </div>
 
-    <div class="container">
-        <h2>Reembolsos Registrados</h2>
-        <div id="reembolsosList"></div>
-        <button class="limpar-tudo" onclick="confirmarLimparTudo('reembolsos')"><i class="fas fa-trash-alt"></i>Limpar Tudo</button>
-    </div>
-
-    <div class="container">
-        <h2>Dívidas Registradas</h2>
-        <div id="dividasList"></div>
-        <button class="limpar-tudo" onclick="confirmarLimparTudo('dividas')"><i class="fas fa-trash-alt"></i>Limpar Tudo</button>
-    </div>
-
-    <div class="container">
-        <button class="limpar-tudo" style="background-color: #d33;" onclick="confirmarLimparTodoSistema()"><i class="fas fa-exclamation-triangle"></i>Limpar Todo o Sistema</button>
-    </div>
-
-    <!-- Firebase Configuration -->
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
-       const firebaseConfig = {
-  apiKey: "AIzaSyB3giUQFfwMb4B66xdsVxZPA6g0TX7wQlg",
-  authDomain: "folevila.firebaseapp.com",
-  databaseURL: "https://folevila-default-rtdb.firebaseio.com",
-  projectId: "folevila",
-  storageBucket: "folevila.appspot.com",
-  messagingSenderId: "424163311320",
-  appId: "1:424163311320:web:85a7e99f738d32bccda1ad",
-  measurementId: "G-V7E7WVY72R"
-};
+        let receitas = JSON.parse(localStorage.getItem('receitas')) || [];
+        let despesas = JSON.parse(localStorage.getItem('despesas')) || [];
+        let anotacoes = JSON.parse(localStorage.getItem('anotacoes')) || [];
 
+        document.addEventListener('DOMContentLoaded', () => {
+            atualizarListaReceitas();
+            atualizarListaDespesas();
+            atualizarResumo();
+            atualizarAnotacoes();
+        });
 
-        firebase.initializeApp(firebaseConfig);
-        var db = firebase.firestore();
-
-        function getCurrentDateTime() {
-            const now = new Date();
-            return now.toLocaleString('pt-BR', {
-                day: '2-digit',
-                month: '2-digit',
-                year: 'numeric',
-                hour: '2-digit',
-                minute: '2-digit',
-                second: '2-digit'
-            });
-        }
-
-        function criarConta() {
-            const nome = document.getElementById('nome').value;
-            if (nome === "") {
-                Swal.fire('Erro', 'Por favor, preencha o nome do membro.', 'error');
-                return;
+        function adicionarReceita() {
+            const descricao = document.getElementById('descricaoReceita').value;
+            const valor = parseFloat(document.getElementById('valorReceita').value);
+            if (descricao && !isNaN(valor)) {
+                receitas.push({ descricao, valor });
+                localStorage.setItem('receitas', JSON.stringify(receitas));
+                atualizarListaReceitas();
+                atualizarResumo();
+                document.getElementById('descricaoReceita').value = '';
+                document.getElementById('valorReceita').value = '';
+                console.log('Receita adicionada:', { descricao, valor });
+            } else {
+                console.log('Descrição ou valor inválidos para receita.');
             }
-
-            db.collection('membros').add({
-                nome: nome,
-                createdAt: getCurrentDateTime()
-            }).then(() => {
-                Swal.fire('Sucesso', 'Conta criada com sucesso!', 'success');
-                atualizarSelectMembros();
-                document.getElementById('nome').value = '';
-                atualizarResumoFinanceiro();
-            }).catch((error) => {
-                Swal.fire('Erro', `Erro ao criar conta: ${error}`, 'error');
-            });
         }
 
-        function registrarPoupanca() {
-            const nomePoupanca = document.getElementById('nomePoupanca').value;
-            const valorPoupado = document.getElementById('valorPoupado').value;
-
-            if (nomePoupanca === "" || valorPoupado === "") {
-                Swal.fire('Erro', 'Por favor, preencha todos os campos.', 'error');
-                return;
+        function adicionarDespesa() {
+            const descricao = document.getElementById('descricaoDespesa').value;
+            const valor = parseFloat(document.getElementById('valorDespesa').value);
+            const saldoDisponivel = calcularSaldoDisponivel();
+            if (descricao && !isNaN(valor) && valor <= saldoDisponivel) {
+                despesas.push({ descricao, valor });
+                localStorage.setItem('despesas', JSON.stringify(despesas));
+                atualizarListaDespesas();
+                atualizarResumo();
+                document.getElementById('descricaoDespesa').value = '';
+                document.getElementById('valorDespesa').value = '';
+                console.log('Despesa adicionada:', { descricao, valor });
+            } else if (valor > saldoDisponivel) {
+                alert('Saldo insuficiente!');
+                console.log('Saldo insuficiente para despesa.');
+            } else {
+                console.log('Descrição ou valor inválidos para despesa.');
             }
+        }
 
-            db.collection('poupancas').add({
-                nome: nomePoupanca,
-                valor: Number(valorPoupado),
-                createdAt: getCurrentDateTime()
-            }).then(() => {
-                Swal.fire('Sucesso', 'Poupança registrada com sucesso!', 'success');
-                document.getElementById('valorPoupado').value = '';
-                atualizarResumoFinanceiro();
-                exibirPoupancas();
-            }).catch((error) => {
-                Swal.fire('Erro', `Erro ao registrar poupança: ${error}`, 'error');
+        function atualizarListaReceitas() {
+            const lista = document.getElementById('listaReceitas');
+            lista.innerHTML = '';
+            receitas.forEach((receita, index) => {
+                const item = document.createElement('div');
+                item.innerHTML = `${receita.descricao} - ${receita.valor} MZN <button class="delete-btn" onclick="excluirReceita(${index})">Excluir</button>`;
+                item.ondblclick = () => {
+                    const btn = item.querySelector('.delete-btn');
+                    btn.style.display = btn.style.display === 'none' ? 'inline' : 'none';
+                };
+                lista.appendChild(item);
             });
         }
 
-        function registrarDivida() {
-            const nomeDivida = document.getElementById('nomeDivida').value;
-            const valorDivida = document.getElementById('valorDivida').value;
-            const valorJuros = document.getElementById('valorJuros').value;
+        function atualizarListaDespesas() {
+            const lista = document.getElementById('listaDespesas');
+            lista.innerHTML = '';
+            despesas.forEach((despesa, index) => {
+                const item = document.createElement('div');
+                item.innerHTML = `${despesa.descricao} - ${despesa.valor} MZN <button class="delete-btn" onclick="excluirDespesa(${index})">Excluir</button>`;
+                item.ondblclick = () => {
+                    const btn = item.querySelector('.delete-btn');
+                    btn.style.display = btn.style.display === 'none' ? 'inline' : 'none';
+                };
+                lista.appendChild(item);
+            });
+        }
 
-            if (nomeDivida === "" || valorDivida === "" || valorJuros === "") {
-                Swal.fire('Erro', 'Por favor, preencha todos os campos.', 'error');
-                return;
+        function atualizarResumo() {
+            const totalReceitas = receitas.reduce((acc, receita) => acc + receita.valor, 0);
+            const totalDespesas = despesas.reduce((acc, despesa) => acc + despesa.valor, 0);
+            const saldoDisponivel = totalReceitas - totalDespesas;
+
+            document.getElementById('totalReceitas').innerText = totalReceitas;
+            document.getElementById('totalDespesas').innerText = totalDespesas;
+            document.getElementById('saldoDisponivel').innerText = saldoDisponivel;
+        }
+
+        function excluirReceita(index) {
+            if (confirm('Você realmente quer excluir esta receita?')) {
+                receitas.splice(index, 1);
+                localStorage.setItem('receitas', JSON.stringify(receitas));
+                atualizarListaReceitas();
+                atualizarResumo();
             }
-
-            db.collection('dividas').add({
-                nome: nomeDivida,
-                valor: Number(valorDivida),
-                juros: Number(valorJuros),
-                createdAt: getCurrentDateTime()
-            }).then(() => {
-                Swal.fire('Sucesso', 'Dívida registrada com sucesso!', 'success');
-                document.getElementById('nomeDivida').value = '';
-                document.getElementById('valorDivida').value = '';
-                document.getElementById('valorJuros').value = '';
-                atualizarResumoFinanceiro();
-                exibirDividas();
-                atualizarSelectDividas();
-            }).catch((error) => {
-                Swal.fire('Erro', `Erro ao registrar dívida: ${error}`, 'error');
-            });
         }
 
-        function registrarReembolso() {
-            const nomeReembolso = document.getElementById('nomeReembolso').value;
-            const valorReembolso = document.getElementById('valorReembolso').value;
-
-            if (nomeReembolso === "" || valorReembolso === "") {
-                Swal.fire('Erro', 'Por favor, preencha todos os campos.', 'error');
-                return;
+        function excluirDespesa(index) {
+            if (confirm('Você realmente quer excluir esta despesa?')) {
+                despesas.splice(index, 1);
+                localStorage.setItem('despesas', JSON.stringify(despesas));
+                atualizarListaDespesas();
+                atualizarResumo();
             }
+        }
 
-            db.collection('reembolsos').add({
-                divida: nomeReembolso,
-                valor: Number(valorReembolso),
-                createdAt: getCurrentDateTime()
-            }).then(() => {
-                Swal.fire('Sucesso', 'Reembolso registrado com sucesso!', 'success');
-                document.getElementById('valorReembolso').value = '';
-                atualizarResumoFinanceiro();
-                exibirReembolsos();
-            }).catch((error) => {
-                Swal.fire('Erro', `Erro ao registrar reembolso: ${error}`, 'error');
+        function calcularSaldoDisponivel() {
+            const totalReceitas = receitas.reduce((acc, receita) => acc + receita.valor, 0);
+            const totalDespesas = despesas.reduce((acc, despesa) => acc + despesa.valor, 0);
+            return totalReceitas - totalDespesas;
+        }
+
+        function salvarAnotacao() {
+            const texto = document.getElementById('chatTexto').value;
+            if (texto) {
+                anotacoes.push(texto);
+                localStorage.setItem('anotacoes', JSON.stringify(anotacoes));
+                atualizarAnotacoes();
+                document.getElementById('chatTexto').value = '';
+            }
+        }
+
+        function atualizarAnotacoes() {
+            const lista = document.getElementById('anotacoes');
+            lista.innerHTML = '';
+            anotacoes.forEach((anotacao, index) => {
+                const item = document.createElement('div');
+                item.innerHTML = `${anotacao} <button class="delete-btn" onclick="excluirAnotacao(${index})">Excluir</button>`;
+                item.ondblclick = () => {
+                    const btn = item.querySelector('.delete-btn');
+                    btn.style.display = btn.style.display === 'none' ? 'inline' : 'none';
+                };
+                lista.appendChild(item);
             });
         }
 
-        function atualizarResumoFinanceiro() {
-            db.collection('dividas').get().then((querySnapshot) => {
-                let totalDividas = 0;
-                let totalClientes = 0;
-                let totalJuros = 0;
-
-                querySnapshot.forEach((doc) => {
-                    totalDividas += doc.data().valor;
-                    totalJuros += (doc.data().valor * (doc.data().juros / 100));
-                    totalClientes++;
-                });
-
-                document.getElementById('totalDividas').innerText = totalDividas;
-                document.getElementById('totalClientes').innerText = totalClientes;
-                document.getElementById('totalJuros').innerText = totalJuros;
-            });
-
-            db.collection('poupancas').get().then((querySnapshot) => {
-                let totalPoupado = 0;
-
-                querySnapshot.forEach((doc) => {
-                    totalPoupado += doc.data().valor;
-                });
-
-                document.getElementById('totalPoupado').innerText = totalPoupado;
-            });
-
-            db.collection('reembolsos').get().then((querySnapshot) => {
-                let totalReembolsado = 0;
-
-                querySnapshot.forEach((doc) => {
-                    totalReembolsado += doc.data().valor;
-                });
-
-                document.getElementById('totalReembolsado').innerText = totalReembolsado;
-            });
-
-            db.collection('membros').get().then((querySnapshot) => {
-                let totalMembros = 0;
-                querySnapshot.forEach(() => {
-                    totalMembros++;
-                });
-                document.getElementById('totalMembros').innerText = totalMembros;
-            });
+        function excluirAnotacao(index) {
+            if (confirm('Você realmente quer excluir esta anotação?')) {
+                anotacoes.splice(index, 1);
+                localStorage.setItem('anotacoes', JSON.stringify(anotacoes));
+                atualizarAnotacoes();
+            }
         }
 
-        function exibirPoupancas() {
-            db.collection('poupancas').orderBy('createdAt').get().then((querySnapshot) => {
-                const poupancasList = document.getElementById('poupancasList');
-                poupancasList.innerHTML = '';
-                querySnapshot.forEach((doc) => {
-                    const data = doc.data();
-                    const poupancaCard = document.createElement('div');
-                    poupancaCard.className = 'card';
-                    poupancaCard.innerHTML = `
-                        <strong>${data.nome}</strong>
-                        <p>Valor: ${data.valor} Meticais</p>
-                        <p>Data: ${data.createdAt}</p>
-                        <button class="delete-btn" onclick="deletarDocumento('poupancas', '${doc.id}')"><i class="fas fa-trash"></i>Excluir</button>
-                    `;
-                    poupancasList.appendChild(poupancaCard);
-                });
-            });
+        function toggleCalculadora() {
+            const calc = document.getElementById('calculadora');
+            calc.style.display = calc.style.display === 'none' ? 'block' : 'none';
         }
 
-        function exibirDividas() {
-            db.collection('dividas').orderBy('createdAt').get().then((querySnapshot) => {
-                const dividasList = document.getElementById('dividasList');
-                dividasList.innerHTML = '';
-                querySnapshot.forEach((doc) => {
-                    const data = doc.data();
-                    const dividaCard = document.createElement('div');
-                    dividaCard.className = 'card';
-                    dividaCard.innerHTML = `
-                        <strong>${data.nome}</strong>
-                        <p>Valor: ${data.valor} Meticais</p>
-                        <p>Juros: ${data.juros}%</p>
-                        <p>Total a Pagar: ${data.valor + (data.valor * (data.juros / 100))} Meticais</p>
-                        <p>Data: ${data.createdAt}</p>
-                        <button class="delete-btn" onclick="deletarDocumento('dividas', '${doc.id}')"><i class="fas fa-trash"></i>Excluir</button>
-                    `;
-                    dividasList.appendChild(dividaCard);
-                });
-            });
+        function calcInput(val) {
+            document.getElementById('calcDisplay').value += val;
         }
 
-        function exibirReembolsos() {
-            db.collection('reembolsos').orderBy('createdAt').get().then((querySnapshot) => {
-                const reembolsosList = document.getElementById('reembolsosList');
-                reembolsosList.innerHTML = '';
-                querySnapshot.forEach((doc) => {
-                    const data = doc.data();
-                    const reembolsoCard = document.createElement('div');
-                    reembolsoCard.className = 'card';
-                    reembolsoCard.innerHTML = `
-                        <strong>${data.divida}</strong>
-                        <p>Valor Reembolsado: ${data.valor} Meticais</p>
-                        <p>Data: ${data.createdAt}</p>
-                        <button class="delete-btn" onclick="deletarDocumento('reembolsos', '${doc.id}')"><i class="fas fa-trash"></i>Excluir</button>
-                    `;
-                    reembolsosList.appendChild(reembolsoCard);
-                });
-            });
+        function calcClear() {
+            document.getElementById('calcDisplay').value = '';
         }
 
-        function deletarDocumento(colecao, id) {
-            Swal.fire({
-                title: 'Tem certeza?',
-                text: "Você não poderá reverter isso!",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Sim, excluir!'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    db.collection(colecao).doc(id).delete().then(() => {
-                        Swal.fire('Excluído!', 'O documento foi excluído.', 'success');
-                        if (colecao === 'poupancas') exibirPoupancas();
-                        if (colecao === 'dividas') exibirDividas();
-                        if (colecao === 'reembolsos') exibirReembolsos();
-                        atualizarResumoFinanceiro();
-                    }).catch((error) => {
-                        Swal.fire('Erro', `Erro ao excluir documento: ${error}`, 'error');
-                    });
-                }
-            });
-        }
-
-        function confirmarLimparTudo(colecao) {
-            Swal.fire({
-                title: 'Tem certeza?',
-                text: "Você não poderá reverter isso!",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Sim, limpar tudo!'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    limparTudo(colecao);
-                }
-            });
-        }
-
-        function limparTudo(colecao) {
-            db.collection(colecao).get().then((querySnapshot) => {
-                const batch = db.batch();
-                querySnapshot.forEach((doc) => {
-                    batch.delete(doc.ref);
-                });
-                return batch.commit();
-            }).then(() => {
-                Swal.fire('Limpo!', 'Todos os documentos foram excluídos.', 'success');
-                if (colecao === 'poupancas') exibirPoupancas();
-                if (colecao === 'dividas') exibirDividas();
-                if (colecao === 'reembolsos') exibirReembolsos();
-                atualizarResumoFinanceiro();
-            }).catch((error) => {
-                Swal.fire('Erro', `Erro ao limpar documentos: ${error}`, 'error');
-            });
-        }
-
-        function confirmarLimparTodoSistema() {
-            Swal.fire({
-                title: 'Tem certeza?',
-                text: "Você não poderá reverter isso!",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Sim, limpar tudo!'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    limparTodoSistema();
-                }
-            });
-        }
-
-        function limparTodoSistema() {
-            const colecoes = ['poupancas', 'dividas', 'reembolsos', 'membros'];
-            colecoes.forEach((colecao) => {
-                db.collection(colecao).get().then((querySnapshot) => {
-                    const batch = db.batch();
-                    querySnapshot.forEach((doc) => {
-                        batch.delete(doc.ref);
-                    });
-                    return batch.commit();
-                }).then(() => {
-                    if (colecao === 'poupancas') exibirPoupancas();
-                    if (colecao === 'dividas') exibirDividas();
-                    if (colecao === 'reembolsos') exibirReembolsos();
-                    atualizarResumoFinanceiro();
-                }).catch((error) => {
-                    Swal.fire('Erro', `Erro ao limpar documentos: ${error}`, 'error');
-                });
-            });
-        }
-
-        function atualizarSelectMembros() {
-            const select = document.getElementById('nomePoupanca');
-            select.innerHTML = '';
-            db.collection('membros').get().then((querySnapshot) => {
-                querySnapshot.forEach((doc) => {
-                    const option = document.createElement('option');
-                    option.value = doc.data().nome;
-                    option.text = doc.data().nome;
-                    select.appendChild(option);
-                });
-            });
-        }
-
-        function atualizarSelectDividas() {
-            const select = document.getElementById('nomeReembolso');
-            select.innerHTML = '';
-            db.collection('dividas').get().then((querySnapshot) => {
-                querySnapshot.forEach((doc) => {
-                    const option = document.createElement('option');
-                    option.value = doc.data().nome;
-                    option.text = doc.data().nome;
-                    select.appendChild(option);
-                });
-            });
-        }
-
-        // Inicialização
-        window.onload = function() {
-            atualizarSelectMembros();
-            atualizarSelectDividas();
-            atualizarResumoFinanceiro();
-            exibirPoupancas();
-            exibirDividas();
-            exibirReembolsos();
+        function calcEquals() {
+            try {
+                const result = eval(document.getElementById('calcDisplay').value);
+                document.getElementById('calcDisplay').value = result;
+            } catch {
+                alert('Expressão inválida');
+                calcClear();
+            }
         }
     </script>
 </body>
